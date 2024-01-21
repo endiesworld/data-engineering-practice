@@ -37,9 +37,9 @@
 ### Download data via
 >> wget https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz 
 
->> gunzip yellow_tripdata_2021-01.csv.gz    # To unzip the file
->> wc -l  yellow_tripdata_2021-01.csv       # To count the numbers of lines in the file
->> head -n 100 yellow_tripdata_2021-01.csv > yellow_head.csv   #To get the first 100 lines of the dataset.
+ >> gunzip yellow_tripdata_2021-01.csv.gz    <!--# To unzip the file -->
+ >> wc -l  yellow_tripdata_2021-01.csv       <!--# To count the numbers of lines in the file -->
+>> head -n 100 yellow_tripdata_2021-01.csv > yellow_head.csv   <!-- To get the first 100 lines of the dataset. -->
 
 python
 >> import pandas as pd
@@ -48,3 +48,15 @@ python
 ### Loading csv file to postgres
 * We would require to specify the data schema using DDL syntax
 >> print(pd.io.sql.get_schema(df, name='yellow_taxi_data'))
+
+### Connecting to postgres database via pgadmin
+>> docker run -it \
+    -e PGADMMIN_DEFAULT_EMAIL="admin@admin.com" \
+    -e PGADMMIN_DEFAULT_PASSWORD="root" \
+    -p 8080:80 \
+    dpage/pgadmin4:latest \
+
+<!-- You can save the above script in a `.sh` file "build_and_run_pgadmin.sh", then run the below command on the terminal -->
+>> chmod +x build_and_run_pgadmin.sh
+ **Run script**
+ >> ./build_and_run_pgadmin.sh
