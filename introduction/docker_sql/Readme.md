@@ -33,3 +33,10 @@
 
 **Connect**
 >> pgcli -h localhost -p 5432 -u root -d ny_taxi
+
+### Download data via
+>> wget https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz 
+
+>> gunzip yellow_tripdata_2021-01.csv.gz    # To unzip the file
+>> wc -l  yellow_tripdata_2021-01.csv       # To count the numbers of lines in the file
+>> head -n 100 yellow_tripdata_2021-01.csv > yellow_head.csv   #To get the first 100 lines of the dataset.
