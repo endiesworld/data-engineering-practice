@@ -40,3 +40,11 @@
 >> gunzip yellow_tripdata_2021-01.csv.gz    # To unzip the file
 >> wc -l  yellow_tripdata_2021-01.csv       # To count the numbers of lines in the file
 >> head -n 100 yellow_tripdata_2021-01.csv > yellow_head.csv   #To get the first 100 lines of the dataset.
+
+python
+>> import pandas as pd
+>> df = pd.read_csv('100 yellow_tripdata_2021-01.csv', nrows=100)
+
+### Loading csv file to postgres
+* We would require to specify the data schema using DDL syntax
+>> print(pd.io.sql.get_schema(df, name='yellow_taxi_data'))
