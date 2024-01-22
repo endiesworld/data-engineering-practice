@@ -4,12 +4,20 @@
     -e POSTGRES_USER="root" \
     -e POSTGRES_PASSWORD="root" \
     -e POSTGRES_DB="ny_taxi" \
-    -v ny_taxi_postgres_data: /var/lib/postgresql/data \
+    -v ny_taxi_postgres_data:/var/lib/postgresql/data \
     -p 5432:5432 \
     postgres:16
 
-**Dockerfile** Run postgres docker image/container from a dockerfile.
->> docker build -t docker_sql . #"To build the image"
+## Dockerfile
+Dockerfile is used to define the structure and configuration of a Docker image, not the runtime characteristics of a container.
+
+The Dockerfile includes instructions for building an image, specifying the base image, adding files, setting environment variables, exposing ports, and other image-related configurations. It does not contain information about container-specific details such as the container name or network name.
+The local/host machine volume name is not specified in the Dockerfile.
+
+Container-specific details, including the container name and network settings, are specified when you run a container based on the Docker image. When you run a container, you can use options such as --name to set the container name and --network to specify the network to which the container should be connected.
+
+Run postgres docker container from a dockerfile.
+>> docker build -t docker_sql . <!-- #"To build the image" -->
 >> docker run -it --name docker_sql_container -p 5432:5432 docker_sql
 
 **View Container:** 
@@ -60,3 +68,26 @@ python
 >> chmod +x build_and_run_pgadmin.sh
  **Run script**
  >> ./build_and_run_pgadmin.sh
+
+ ### Two different containers
+When we have two different running containers running in an isolated mood, it is impossible to connect both both via localhost. The right approach to do this connection is to create a netwook for these containers.
+To achieve this, first stop the containers you want to connect/run in a network, and follow the below steps:
+
+**Creating a netwook**
+>> docker network create pg-network
+**Update the containers script to at the network name created above and ensure that all containers in th network has a name.**
+
+>> docker run -it \
+    -e POSTGRES_USER="root" \
+    -e POSTGRES_PASSWORD="root" \
+    -e POSTGRES_DB="ny_taxi" \
+    -v ny_taxi_postgres_data:/var/lib/postgresql/data \
+    -p 5432:5432 \
+    --network=pg-network \
+    --name docker_sql_container \
+    postgres:16
+
+<!--     OR   CONNECT AN EXISTING CONTAINER TO A NETWORK    -->
+>> docker network create pg-network <!-- Create a network -->
+>> docker network disconnect current-network docker_sql_container <!-- If the container is connected to any exisitng network -->
+>> docker network connect pg-network docker_sql_container <!-- docker network connect my-network existing-container -->

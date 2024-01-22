@@ -10,7 +10,7 @@ ENV POSTGRES_DB=ny_taxi
 EXPOSE 5432
 
 # Define a named volume for PostgreSQL data
-VOLUME ny_taxi_postgres_data /var/lib/postgresql/data
+VOLUME /var/lib/postgresql/data
 
 # Command to run when the container starts
 CMD ["postgres"]
