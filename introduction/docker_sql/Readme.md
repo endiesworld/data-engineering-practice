@@ -91,3 +91,6 @@ To achieve this, first stop the containers you want to connect/run in a network,
 >> docker network create pg-network <!-- Create a network -->
 >> docker network disconnect current-network docker_sql_container <!-- If the container is connected to any exisitng network -->
 >> docker network connect pg-network docker_sql_container <!-- docker network connect my-network existing-container -->
+
+## Convert Jupyter notebook to script
+>> jupyter nbconvert --to=script cvs_postgres_converter.ipynb
