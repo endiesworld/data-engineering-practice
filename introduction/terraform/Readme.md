@@ -7,3 +7,10 @@
 
 **terraform .gitignore**
 Google terraform .gitignore to know what files to not include in your commit.
+
+**Google Credentials:**
+>> export GOOGLE_APPLICATION_CREDENTIALS="<path/to/your/service-account-authkeys>.json"
+>> gcloud auth application-default 
+
+to remove your google credentials from the global settings
+>> unset GOOGLE_CREDENTIALS
