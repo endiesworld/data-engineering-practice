@@ -87,6 +87,9 @@ To achieve this, first stop the containers you want to connect/run in a network,
     --name docker_sql_container \
     postgres:16
 
+**Start the container again**
+>> docker start -i docker_sql_container
+
 <!--     OR   CONNECT AN EXISTING CONTAINER TO A NETWORK    -->
 >> docker network create pg-network <!-- Create a network -->
 >> docker network disconnect current-network docker_sql_container <!-- If the container is connected to any exisitng network -->
@@ -94,3 +97,13 @@ To achieve this, first stop the containers you want to connect/run in a network,
 
 ## Convert Jupyter notebook to script
 >> jupyter nbconvert --to=script cvs_postgres_converter.ipynb
+
+## Running the `ingest_data.py` script
+>> python ingest_data.py \
+    --user=root \
+    --password=root \
+    --host=localhost \
+    --port=5432 \
+    --db=ny_taxi \
+    --table=yellow_taxi_data \
+    --url="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz"
