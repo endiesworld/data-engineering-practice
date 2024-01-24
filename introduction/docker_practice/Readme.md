@@ -32,3 +32,11 @@ Docker can build images automatically by reading the instructions from a Dockerf
 * **.** This tells docker to chech the current directory for the dockerfile to use in building the image.
 
 >> docker run -it test:pandas
+
+<!-- THIS SECTION OF THE CODE OCCURED AFTER THE LESSON IN docker_sql directory -->
+1. Updated the dockerfile to include instructions required for running the ingest_data.py file.
+>> docker build -t ingest_data_image .
+>> docker run -it --network=pg-network --name ingest_data_container ingest_data_image
+
+2. For repaeted run of this container:
+>> docker start -i ingest_data_container
