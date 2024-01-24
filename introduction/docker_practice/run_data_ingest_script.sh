@@ -3,7 +3,7 @@
 python ingest_data.py \
     --user=root \
     --password=root \
-    --host=docker_sql_container \
+    --host=docker_sql_container_2 \
     --port=5432 \
     --db=ny_taxi \
     --table=yellow_taxi_data \

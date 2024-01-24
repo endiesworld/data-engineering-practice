@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: ny_taxi
+    volumes:
+      - ny_taxi_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - pg-network_2
+    container_name: docker_sql_container_2
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "8080:80"
+    networks:
+      - pg-network_2
+    container_name: pgadmin_container_2
+
+  python-app:
+    build:
+      context: ./docker_practice
+      dockerfile: Dockerfile
+    networks:
+      - pg-network_2
+    depends_on:
+      - postgres
+    command: "./run_data_ingest_script.sh"
+
+networks:
+  pg-network_2:
+    driver: bridge
+
+volumes:
+  ny_taxi_postgres_data:
