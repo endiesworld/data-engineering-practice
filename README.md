@@ -24,3 +24,4 @@ Here's what happens:
 If you don't specify a port, the server will listen on port 8000.
 It serves files from the current working directory.
 You can access the served files by opening a web browser and navigating to http://localhost:8000 (or the specified port if you provided one).
+updated
