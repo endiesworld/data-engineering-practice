@@ -1,3 +1,7 @@
 yellow_*
 dtc-de-course*
 venv
+*.csv
+*.csv.gz
+*.backup
+*.terraform
