@@ -1,7 +1,10 @@
 yellow_*
 dtc-de-course*
 venv
+.venv
 *.csv
 *.csv.gz
 *.backup
 *.terraform
+*.duckdb
+*.duckdb.wal
