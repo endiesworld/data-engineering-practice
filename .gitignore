@@ -8,3 +8,4 @@ venv
 *.terraform
 *.duckdb
 *.duckdb.wal
+*.parquet
