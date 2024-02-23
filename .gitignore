@@ -9,3 +9,4 @@ venv
 *.duckdb
 *.duckdb.wal
 *.parquet
+*.csv.crc
