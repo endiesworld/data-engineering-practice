@@ -10,3 +10,5 @@ venv
 *.duckdb.wal
 *.parquet
 *.csv.crc
+output.txt
+.ipynb_*
