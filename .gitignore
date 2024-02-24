@@ -13,3 +13,4 @@ venv
 output.txt
 .ipynb_*
 *.txt
+.part*
