@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from typing import Dict, List
 from json import loads
 from kafka import KafkaConsumer
@@ -30,14 +32,21 @@ class JsonConsumer:
 
 
 if __name__ == '__main__':
+    load_dotenv()
     config = {
-        'bootstrap_servers': BOOTSTRAP_SERVERS,
+        'bootstrap_servers': os.getenv("bootstrap.servers"),
+        'security_protocol': os.getenv("security.protocol"),
+        'sasl_mechanism': os.getenv("sasl.mechanisms"),
+        'ssl_check_hostname': False,
+        'sasl_plain_username': os.getenv("sasl.username"),
+        'sasl_plain_password': os.getenv("sasl.password"),
         'auto_offset_reset': 'earliest',
         'enable_auto_commit': True,
         'key_deserializer': lambda key: int(key.decode('utf-8')),
         'value_deserializer': lambda x: loads(x.decode('utf-8'), object_hook=lambda d: Ride.from_dict(d)),
-        'group_id': 'consumer.group.id.json-example.1',
+        'group_id': 'proxy:2551287',
+        'api_version':(0, 10, 1)
     }
-
+    # print(config)
     json_consumer = JsonConsumer(props=config)
     json_consumer.consume_from_kafka(topics=[KAFKA_TOPIC])
