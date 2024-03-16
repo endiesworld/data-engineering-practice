@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 import csv
 import json
 from typing import List, Dict
@@ -33,11 +35,18 @@ class JsonProducer(KafkaProducer):
 
 if __name__ == '__main__':
     # Config Should match with the KafkaProducer expectation
+    load_dotenv()
     config = {
-        'bootstrap_servers': BOOTSTRAP_SERVERS,
+        'bootstrap_servers': os.getenv("bootstrap.servers"),
+        'security_protocol': os.getenv("security.protocol"),
+        'sasl_mechanism': os.getenv("sasl.mechanisms"),
+        'ssl_check_hostname': False,
+        'sasl_plain_username': os.getenv("sasl.username"),
+        'sasl_plain_password': os.getenv("sasl.password"),
         'key_serializer': lambda key: str(key).encode(),
         'value_serializer': lambda x: json.dumps(x.__dict__, default=str).encode('utf-8')
     }
+    # print(config)
     producer = JsonProducer(props=config)
     rides = producer.read_records(resource_path=INPUT_DATA_PATH)
     producer.publish_rides(topic=KAFKA_TOPIC, messages=rides)
