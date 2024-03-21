@@ -40,3 +40,11 @@ Docker can build images automatically by reading the instructions from a Dockerf
 
 2. For repaeted run of this container:
 >> docker start -i ingest_data_container
+
+## Using Docker-compose File
+
+In summary, docker-compose file is an advanced and better way of saying "docker run my_image"
+
+In essence, a docker-compose.yml file provides a more sophisticated and flexible approach compared to the simple docker run command. It allows you to define multiple services, each with its own configuration, dependencies, and network settings.
+
+While docker run my_image is a command to start a single container using a specific image, a docker-compose.yml file allows you to define and manage a complete multi-container application, making it easier to orchestrate complex setups and environments
