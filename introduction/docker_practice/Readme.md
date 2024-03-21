@@ -48,3 +48,4 @@ In summary, docker-compose file is an advanced and better way of saying "docker 
 In essence, a docker-compose.yml file provides a more sophisticated and flexible approach compared to the simple docker run command. It allows you to define multiple services, each with its own configuration, dependencies, and network settings.
 
 While docker run my_image is a command to start a single container using a specific image, a docker-compose.yml file allows you to define and manage a complete multi-container application, making it easier to orchestrate complex setups and environments
+i.e before you do a docker-compose up, you must have the docker images for the resources refrenced by the services in your docker-compose.yml file available in the machine. This is achieved by doing a "docker build -t ingest_data_image ." for building images from a dockerfile.
