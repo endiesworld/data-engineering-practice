@@ -2,6 +2,7 @@ import csv
 from time import sleep
 from typing import Dict
 from kafka import KafkaProducer
+from typing import List
 
 from settings import BOOTSTRAP_SERVERS, INPUT_DATA_PATH, PRODUCE_TOPIC_RIDES_CSV
 
@@ -35,7 +36,7 @@ class RideCSVProducer:
                     break
         return zip(ride_keys, records)
 
-    def publish(self, topic: str, records: [str, str]):
+    def publish(self, topic: str, records: List[str, str]):
         for key_value in records:
             key, value = key_value
             try:
