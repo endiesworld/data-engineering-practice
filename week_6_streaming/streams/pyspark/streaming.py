@@ -1,3 +1,14 @@
+import os
+import findspark
+
+# Replace "../../../../" with the actual absolute path to your home directory
+home_directory = "../../../../../../"
+os.environ["SPARK_HOME"] = os.path.join(home_directory, "spark-3.3.2-bin-hadoop3")
+spark_python = os.path.join(os.environ["SPARK_HOME"], "python")
+py4j_path = os.path.join(spark_python, "lib", "py4j-*.zip")
+
+findspark.init()
+
 from pyspark.sql import SparkSession
 import pyspark.sql.functions as F
 

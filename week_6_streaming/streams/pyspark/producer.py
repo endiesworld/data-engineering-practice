@@ -36,7 +36,7 @@ class RideCSVProducer:
                     break
         return zip(ride_keys, records)
 
-    def publish(self, topic: str, records: List[str, str]):
+    def publish(self, topic: str, records: List[str]):
         for key_value in records:
             key, value = key_value
             try:
